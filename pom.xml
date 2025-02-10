@@ -76,7 +76,7 @@
         <!-- Eliminates the file encoding warning. Of course, all of your files
             should probably be UTF-8 nowadays. -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <javaLanguage.version>1.6</javaLanguage.version>
+        <javaLanguage.version>1.8</javaLanguage.version>
         <javadoc.doclint.param/>
 
         <!--  Dependencies [BUILD]:  -->
@@ -86,27 +86,29 @@
         <maven-compiler-plugin.version>3.3</maven-compiler-plugin.version>
         <nexus-staging-maven-plugin.version>1.6.5</nexus-staging-maven-plugin.version>
         <maven-source-plugin.version>2.4</maven-source-plugin.version>
-        <animal-sniffer-maven-plugin.version>1.14</animal-sniffer-maven-plugin.version>
-        <animal-sniffer-maven-plugin.signature.version>1.1</animal-sniffer-maven-plugin.signature.version>
+        <animal-sniffer-maven-plugin.version>1.22</animal-sniffer-maven-plugin.version>
+        <animal-sniffer-maven-plugin.signature.version>1.0</animal-sniffer-maven-plugin.signature.version>
         <!--  Dependencies [REPORT]:  -->
         <maven-site-plugin.version>3.4</maven-site-plugin.version>
         <maven-project-info-reports-plugin.version>2.8</maven-project-info-reports-plugin.version>
         <versions-maven-plugin.version>2.2</versions-maven-plugin.version>
         <maven-jxr-plugin.version>2.5</maven-jxr-plugin.version>
         <maven-surefire-report-plugin.version>2.18.1</maven-surefire-report-plugin.version>
-        <jacoco-maven-plugin.version>0.7.5.201505241946</jacoco-maven-plugin.version>
+        <jacoco-maven-plugin.version>0.8.11</jacoco-maven-plugin.version>
         <!--  Dependencies [COMPILE]:  -->
-        <httpclient.version>4.4.1</httpclient.version>
-        <httpcore.version>4.4.1</httpcore.version>
+        <httpclient.version>4.5.14</httpclient.version>
+        <httpcore.version>4.4.16</httpcore.version>
         <commons-logging.version>1.2</commons-logging.version>
         <joda-time.version>2.8</joda-time.version>
         <commons-lang3.version>3.4</commons-lang3.version>
         <commons-io.version>2.4</commons-io.version>
+		<jakarta-xml.version>3.0.1</jakarta-xml.version>
+		
         <!--  Dependencies [TEST]:  -->
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
         <hamcrest-all.version>1.3</hamcrest-all.version>
-        <mockito-core.version>1.10.19</mockito-core.version>
-        <slf4j.version>1.7.12</slf4j.version>
+        <mockito-core.version>4.11.0</mockito-core.version>
+        <slf4j.version>2.0.13</slf4j.version>
         <logback.version>1.1.3</logback.version>
     </properties>
 
@@ -248,7 +250,19 @@
             <artifactId>joda-time</artifactId>
             <version>${joda-time.version}</version>
         </dependency>
+		
+		<dependency>
+            <groupId>jakarta.xml.bind</groupId>
+            <artifactId>jakarta.xml.bind-api</artifactId>
+            <version>${jakarta-xml.version}</version>
+        </dependency>
 
+        <dependency>
+            <groupId>jakarta.xml.ws</groupId>
+            <artifactId>jakarta.xml.ws-api</artifactId>
+            <version>${jakarta-xml.version}</version>
+        </dependency>
+		
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -355,13 +369,13 @@
                 <configuration>
                     <signature>
                         <groupId>org.codehaus.mojo.signature</groupId>
-                        <artifactId>java16-sun</artifactId>
+                        <artifactId>java18</artifactId>
                         <version>${animal-sniffer-maven-plugin.signature.version}</version>
                     </signature>
                 </configuration>
                 <executions>
                     <execution>
-                        <id>check-java16-sun</id>
+                        <id>check-java8</id>
                         <phase>test</phase>
                         <goals>
                             <goal>check</goal>
